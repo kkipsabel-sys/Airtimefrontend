@@ -3,1056 +3,755 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Airtime Solutions - Login</title>
+    <title>Login - Airtime Solution Kenya 🇰🇪</title>
+    <link rel="manifest" href="/manifest.json">
+    <link rel="icon" type="image/png" href="/airtime-logo.png">
+    <link rel="apple-touch-icon" href="/airtime-logo.png">
+    <meta name="theme-color" content="#1a5f2a">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
-
-        :root {
-            --primary: #1a73e8;
-            --secondary: #34a853;
-            --accent: #fbbc04;
-            --dark: #202124;
-            --light: #f8f9fa;
-            --error: #ea4335;
-            --success: #34a853;
-            --warning: #fbbc04;
-            --info: #4285f4;
         }
 
         body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #1a5f2a 0%, #0d3d18 50%, #051a08 100%);
             min-height: 100vh;
-            background: linear-gradient(135deg, var(--primary) 0%, #0d47a1 50%, var(--dark) 100%);
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             padding: 20px;
         }
 
-        .container {
-            width: 100%;
+        .auth-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 24px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            overflow: hidden;
             max-width: 450px;
+            width: 100%;
+            animation: slideUp 0.6s ease-out;
         }
 
-        .logo-section {
+        @keyframes slideUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .auth-header {
+            background: linear-gradient(135deg, #1a5f2a, #2d8b42);
+            color: white;
+            padding: 30px;
             text-align: center;
-            margin-bottom: 30px;
         }
 
-        .logo-section img {
+        .auth-header img {
             width: 80px;
             height: 80px;
-            border-radius: 16px;
+            border-radius: 50%;
+            background: white;
+            padding: 10px;
             margin-bottom: 15px;
         }
 
-        .logo-section h1 {
-            color: white;
-            font-size: 28px;
-            font-weight: 600;
+        .auth-header h1 {
+            font-size: 1.6rem;
+            margin-bottom: 5px;
         }
 
-        .logo-section p {
-            color: rgba(255,255,255,0.8);
-            font-size: 14px;
-            margin-top: 8px;
+        .auth-header p {
+            font-size: 0.9rem;
+            opacity: 0.9;
         }
 
-        .auth-card {
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
-            overflow: hidden;
-        }
-
-        .tabs {
+        .auth-tabs {
             display: flex;
-            background: var(--light);
-            border-bottom: 1px solid #e0e0e0;
+            background: #f5f5f5;
         }
 
-        .tab {
+        .auth-tab {
             flex: 1;
-            padding: 16px;
+            padding: 15px;
             text-align: center;
             cursor: pointer;
             font-weight: 500;
             color: #666;
+            border: none;
+            background: transparent;
             transition: all 0.3s ease;
-            border-bottom: 3px solid transparent;
+            position: relative;
         }
 
-        .tab:hover {
-            color: var(--primary);
-            background: rgba(26,115,232,0.05);
-        }
-
-        .tab.active {
-            color: var(--primary);
-            border-bottom-color: var(--primary);
+        .auth-tab.active {
+            color: #1a5f2a;
             background: white;
         }
 
-        .form-container {
+        .auth-tab.active::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: #f4a020;
+        }
+
+        .auth-content {
             padding: 30px;
         }
 
-        .form-section {
+        .auth-form {
             display: none;
         }
 
-        .form-section.active {
+        .auth-form.active {
             display: block;
-            animation: fadeIn 0.3s ease;
+            animation: fadeIn 0.4s ease;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         .form-group {
             margin-bottom: 20px;
-            position: relative;
         }
 
         .form-group label {
             display: block;
             margin-bottom: 8px;
             font-weight: 500;
-            color: var(--dark);
-            font-size: 14px;
+            color: #333;
+            font-size: 0.9rem;
         }
 
-        .input-wrapper {
-            position: relative;
+        .form-group label i {
+            margin-right: 8px;
+            color: #1a5f2a;
         }
 
-        .form-group input {
+        .form-input {
             width: 100%;
             padding: 14px 16px;
-            padding-right: 45px;
             border: 2px solid #e0e0e0;
-            border-radius: 10px;
-            font-size: 15px;
+            border-radius: 12px;
+            font-size: 1rem;
             transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .form-input:focus {
             outline: none;
+            border-color: #1a5f2a;
+            box-shadow: 0 0 0 3px rgba(26, 95, 42, 0.1);
         }
 
-        .form-group input:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(26,115,232,0.1);
+        .form-input.error {
+            border-color: #dc3545;
         }
 
-        .form-group input.valid {
-            border-color: var(--success);
-        }
-
-        .form-group input.invalid {
-            border-color: var(--error);
-        }
-
-        .validation-icon {
-            position: absolute;
-            right: 14px;
-            top: 50%;
-            transform: translateY(-50%);
-            width: 20px;
-            height: 20px;
-        }
-
-        .validation-icon.valid {
-            color: var(--success);
-        }
-
-        .validation-icon.invalid {
-            color: var(--error);
-        }
-
-        .feedback {
-            font-size: 12px;
-            margin-top: 6px;
-            display: block;
-        }
-
-        .feedback.valid {
-            color: var(--success);
-        }
-
-        .feedback.invalid {
-            color: var(--error);
-        }
-
-        .password-strength {
-            margin-top: 8px;
-            display: flex;
-            gap: 4px;
-        }
-
-        .strength-bar {
-            flex: 1;
-            height: 4px;
-            background: #e0e0e0;
-            border-radius: 2px;
-            transition: background 0.3s;
-        }
-
-        .strength-bar.weak { background: var(--error); }
-        .strength-bar.medium { background: var(--warning); }
-        .strength-bar.strong { background: var(--success); }
-
-        .strength-text {
-            font-size: 12px;
-            margin-top: 4px;
-            color: #666;
-        }
-
-        .checkbox-group {
+        .phone-input-wrapper {
             display: flex;
             align-items: center;
-            gap: 10px;
-            margin-bottom: 20px;
         }
 
-        .checkbox-group input[type="checkbox"] {
-            width: 18px;
-            height: 18px;
-            accent-color: var(--primary);
+        .phone-prefix {
+            background: #f5f5f5;
+            padding: 14px 12px;
+            border: 2px solid #e0e0e0;
+            border-right: none;
+            border-radius: 12px 0 0 12px;
+            font-weight: 500;
+            color: #333;
         }
 
-        .checkbox-group label {
-            font-size: 14px;
-            color: #666;
-            cursor: pointer;
-        }
-
-        .checkbox-group a {
-            color: var(--primary);
-            text-decoration: none;
+        .phone-input-wrapper .form-input {
+            border-radius: 0 12px 12px 0;
         }
 
         .btn {
             width: 100%;
-            padding: 14px;
+            padding: 15px;
             border: none;
-            border-radius: 10px;
-            font-size: 16px;
+            border-radius: 12px;
+            font-size: 1rem;
             font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
+            font-family: inherit;
             display: flex;
-            justify-content: center;
             align-items: center;
+            justify-content: center;
             gap: 10px;
         }
 
         .btn-primary {
-            background: var(--primary);
+            background: linear-gradient(135deg, #1a5f2a, #2d8b42);
             color: white;
         }
 
         .btn-primary:hover {
-            background: #1557b0;
             transform: translateY(-2px);
-            box-shadow: 0 4px 12px rgba(26,115,232,0.4);
+            box-shadow: 0 8px 20px rgba(26, 95, 42, 0.3);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        .btn-secondary {
+            background: #f5f5f5;
+            color: #333;
+            margin-top: 10px;
+        }
+
+        .btn-secondary:hover {
+            background: #e0e0e0;
         }
 
         .btn:disabled {
             opacity: 0.7;
             cursor: not-allowed;
-            transform: none;
         }
 
         .btn .spinner {
-            animation: spin 1s linear infinite;
+            width: 20px;
+            height: 20px;
+            border: 2px solid transparent;
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
         }
 
         @keyframes spin {
-            from { transform: rotate(0deg); }
             to { transform: rotate(360deg); }
         }
 
-        .btn-text { display: inline; }
-        .btn-loader { display: none; }
-        .btn.loading .btn-text { display: none; }
-        .btn.loading .btn-loader { display: inline-flex; align-items: center; gap: 8px; }
-
-        #notificationContainer {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 9999;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            max-width: 380px;
-        }
-
-        .notification {
-            padding: 16px 20px;
-            border-radius: 10px;
+        .divider {
             display: flex;
             align-items: center;
-            gap: 12px;
-            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
-            animation: slideIn 0.3s ease;
-            color: white;
+            margin: 20px 0;
         }
 
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(100px); }
-            to { opacity: 1; transform: translateX(0); }
-        }
-
-        .notification-success { background: var(--success); }
-        .notification-error { background: var(--error); }
-        .notification-warning { background: var(--warning); color: var(--dark); }
-        .notification-info { background: var(--info); }
-
-        .notification svg {
-            width: 24px;
-            height: 24px;
-            flex-shrink: 0;
-        }
-
-        .notification span {
+        .divider::before,
+        .divider::after {
+            content: '';
             flex: 1;
-            font-size: 14px;
+            height: 1px;
+            background: #e0e0e0;
         }
 
-        .notification button {
+        .divider span {
+            padding: 0 15px;
+            color: #999;
+            font-size: 0.85rem;
+        }
+
+        .forgot-password {
+            text-align: right;
+            margin-top: -10px;
+            margin-bottom: 20px;
+        }
+
+        .forgot-password a {
+            color: #1a5f2a;
+            text-decoration: none;
+            font-size: 0.85rem;
+            font-weight: 500;
+        }
+
+        .forgot-password a:hover {
+            text-decoration: underline;
+        }
+
+        .alert {
+            padding: 12px 16px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 0.9rem;
+            animation: slideDown 0.3s ease;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .alert-error {
+            background: #ffe3e3;
+            color: #dc3545;
+            border: 1px solid #ffb3b3;
+        }
+
+        .alert-success {
+            background: #d4edda;
+            color: #155724;
+            border: 1px solid #c3e6cb;
+        }
+
+        .alert-info {
+            background: #d1ecf1;
+            color: #0c5460;
+            border: 1px solid #bee5eb;
+        }
+
+        .password-toggle {
+            position: relative;
+        }
+
+        .password-toggle .form-input {
+            padding-right: 45px;
+        }
+
+        .password-toggle .toggle-btn {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
             background: none;
             border: none;
-            color: inherit;
-            font-size: 20px;
             cursor: pointer;
-            opacity: 0.8;
-            padding: 0;
-            line-height: 1;
+            color: #666;
         }
 
-        .notification button:hover {
-            opacity: 1;
+        .footer-text {
+            text-align: center;
+            margin-top: 20px;
+            font-size: 0.85rem;
+            color: #666;
         }
+
+        .footer-text a {
+            color: #1a5f2a;
+            font-weight: 600;
+            text-decoration: none;
+        }
+
+        .footer-text a:hover {
+            text-decoration: underline;
+        }
+
+        .kenya-flag {
+            display: inline-flex;
+            gap: 2px;
+            margin-left: 5px;
+        }
+
+        .kenya-flag span {
+            display: inline-block;
+            width: 8px;
+            height: 20px;
+        }
+
+        .kenya-flag .black { background: #000; }
+        .kenya-flag .red { background: #bb0a21; }
+        .kenya-flag .green { background: #1a5f2a; }
 
         @media (max-width: 480px) {
-            .container {
-                padding: 10px;
+            .auth-container {
+                margin: 10px;
             }
 
-            .form-container {
+            .auth-header {
                 padding: 20px;
             }
 
-            .logo-section h1 {
-                font-size: 24px;
-            }
-
-            #notificationContainer {
-                left: 10px;
-                right: 10px;
-                max-width: none;
+            .auth-content {
+                padding: 20px;
             }
         }
     </style>
 </head>
 <body>
-    <div id="notificationContainer"></div>
-
-    <div class="container">
-        <div class="logo-section">
-            <img src="airtime logo.png" alt="Airtime Solutions" onerror="this.style.display='none'">
-            <h1>Airtime Solutions</h1>
-            <p>Your trusted airtime and payment partner</p>
+    <div class="auth-container">
+        <div class="auth-header">
+            <img src="https://via.placeholder.com/80x80/1a5f2a/ffffff?text=ASK" alt="Airtime Solution Kenya" id="logoImg">
+            <h1>Airtime Solution Kenya <span class="kenya-flag"><span class="black"></span><span class="red"></span><span class="green"></span></span></h1>
+            <p>Buy & Resell Airtime Instantly</p>
         </div>
 
-        <div class="auth-card">
-            <div class="tabs">
-                <div class="tab active" onclick="switchTab('signin')">Sign In</div>
-                <div class="tab" onclick="switchTab('signup')">Sign Up</div>
-                <div class="tab" onclick="switchTab('forgot')">Forgot Password</div>
-            </div>
+        <div class="auth-tabs">
+            <button class="auth-tab active" data-tab="login">
+                <i class="fas fa-sign-in-alt"></i> Login
+            </button>
+            <button class="auth-tab" data-tab="signup">
+                <i class="fas fa-user-plus"></i> Sign Up
+            </button>
+            <button class="auth-tab" data-tab="forgot">
+                <i class="fas fa-key"></i> Reset
+            </button>
+        </div>
 
-            <div class="form-container">
-                <!-- Sign In Form -->
-                <div id="signin-form" class="form-section active">
-                    <form onsubmit="handleSignIn(event)">
-                        <div class="form-group">
-                            <label>Email Address</label>
-                            <div class="input-wrapper">
-                                <input type="email" id="signin-email" placeholder="Enter your email" required>
-                            </div>
-                        </div>
+        <div class="auth-content">
+            <div id="alertBox"></div>
 
-                        <div class="form-group">
-                            <label>Password</label>
-                            <div class="input-wrapper">
-                                <input type="password" id="signin-password" placeholder="Enter your password" required minlength="6">
-                            </div>
-                        </div>
-
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="remember-me">
-                            <label for="remember-me">Remember me</label>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary" id="signin-btn">
-                            <span class="btn-text">Sign In</span>
-                            <span class="btn-loader">
-                                <svg class="spinner" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10" stroke-dasharray="30 70"/>
-                                </svg>
-                                Signing in...
-                            </span>
-                        </button>
-                    </form>
+            <form id="loginForm" class="auth-form active">
+                <div class="form-group">
+                    <label><i class="fas fa-envelope"></i> Email Address</label>
+                    <input type="email" class="form-input" id="loginEmail" placeholder="Enter your email" required>
                 </div>
 
-                <!-- Sign Up Form -->
-                <div id="signup-form" class="form-section">
-                    <form onsubmit="handleSignUp(event)">
-                        <div class="form-group">
-                            <label>Username</label>
-                            <div class="input-wrapper">
-                                <input type="text" id="signup-username" placeholder="Choose a username" required oninput="validateUsername(this)">
-                                <span class="validation-icon" id="username-icon"></span>
-                            </div>
-                            <span class="feedback" id="username-feedback"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Email Address</label>
-                            <div class="input-wrapper">
-                                <input type="email" id="signup-email" placeholder="Enter your email" required oninput="validateEmail(this)">
-                                <span class="validation-icon" id="email-icon"></span>
-                            </div>
-                            <span class="feedback" id="email-feedback"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Phone Number</label>
-                            <div class="input-wrapper">
-                                <input type="tel" id="signup-phone" placeholder="07XXXXXXXX or +254XXXXXXXX" required oninput="validatePhone(this)">
-                                <span class="validation-icon" id="phone-icon"></span>
-                            </div>
-                            <span class="feedback" id="phone-feedback"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Password</label>
-                            <div class="input-wrapper">
-                                <input type="password" id="signup-password" placeholder="Create a password" required oninput="validatePassword(this)">
-                                <span class="validation-icon" id="password-icon"></span>
-                            </div>
-                            <div class="password-strength" id="password-strength">
-                                <div class="strength-bar" id="str1"></div>
-                                <div class="strength-bar" id="str2"></div>
-                                <div class="strength-bar" id="str3"></div>
-                                <div class="strength-bar" id="str4"></div>
-                            </div>
-                            <span class="strength-text" id="strength-text"></span>
-                            <span class="feedback" id="password-feedback"></span>
-                        </div>
-
-                        <div class="form-group">
-                            <label>Confirm Password</label>
-                            <div class="input-wrapper">
-                                <input type="password" id="signup-confirm" placeholder="Confirm your password" required oninput="validateConfirmPassword(this)">
-                                <span class="validation-icon" id="confirm-icon"></span>
-                            </div>
-                            <span class="feedback" id="confirm-feedback"></span>
-                        </div>
-
-                        <div class="checkbox-group">
-                            <input type="checkbox" id="terms" required>
-                            <label for="terms">I agree to the <a href="#">Terms & Conditions</a></label>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary" id="signup-btn">
-                            <span class="btn-text">Sign Up</span>
-                            <span class="btn-loader">
-                                <svg class="spinner" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10" stroke-dasharray="30 70"/>
-                                </svg>
-                                Creating account...
-                            </span>
+                <div class="form-group">
+                    <label><i class="fas fa-lock"></i> Password</label>
+                    <div class="password-toggle">
+                        <input type="password" class="form-input" id="loginPassword" placeholder="Enter your password" required>
+                        <button type="button" class="toggle-btn" onclick="togglePassword('loginPassword', this)">
+                            <i class="fas fa-eye"></i>
                         </button>
-                    </form>
+                    </div>
                 </div>
 
-                <!-- Forgot Password Form -->
-                <div id="forgot-form" class="form-section">
-                    <form onsubmit="handleForgotPassword(event)">
-                        <div class="form-group">
-                            <label>Email Address</label>
-                            <div class="input-wrapper">
-                                <input type="email" id="forgot-email" placeholder="Enter your registered email" required>
-                            </div>
-                            <span class="feedback" id="forgot-feedback"></span>
-                        </div>
-
-                        <button type="submit" class="btn btn-primary" id="forgot-btn">
-                            <span class="btn-text">Send Reset Link</span>
-                            <span class="btn-loader">
-                                <svg class="spinner" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <circle cx="12" cy="12" r="10" stroke-dasharray="30 70"/>
-                                </svg>
-                                Sending...
-                            </span>
-                        </button>
-                    </form>
+                <div class="forgot-password">
+                    <a href="#" onclick="switchTab('forgot')">Forgot password?</a>
                 </div>
-            </div>
+
+                <button type="submit" class="btn btn-primary" id="loginBtn">
+                    <i class="fas fa-sign-in-alt"></i> Login
+                </button>
+
+                <div class="footer-text">
+                    Don't have an account? <a href="#" onclick="switchTab('signup')">Sign up</a>
+                </div>
+            </form>
+
+            <form id="signupForm" class="auth-form">
+                <div class="form-group">
+                    <label><i class="fas fa-user"></i> Username *</label>
+                    <input type="text" class="form-input" id="signupUsername" placeholder="Choose a unique username" required>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-envelope"></i> Email Address *</label>
+                    <input type="email" class="form-input" id="signupEmail" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-phone"></i> Phone Number *</label>
+                    <div class="phone-input-wrapper">
+                        <span class="phone-prefix">+254</span>
+                        <input type="tel" class="form-input" id="signupPhone" placeholder="7XXXXXXXX" maxlength="9" required>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-lock"></i> Password *</label>
+                    <div class="password-toggle">
+                        <input type="password" class="form-input" id="signupPassword" placeholder="Min 6 characters" required minlength="6">
+                        <button type="button" class="toggle-btn" onclick="togglePassword('signupPassword', this)">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label><i class="fas fa-lock"></i> Confirm Password *</label>
+                    <div class="password-toggle">
+                        <input type="password" class="form-input" id="signupConfirmPassword" placeholder="Confirm your password" required>
+                        <button type="button" class="toggle-btn" onclick="togglePassword('signupConfirmPassword', this)">
+                            <i class="fas fa-eye"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-primary" id="signupBtn">
+                    <i class="fas fa-user-plus"></i> Create Account
+                </button>
+
+                <div class="footer-text">
+                    Already have an account? <a href="#" onclick="switchTab('login')">Login</a>
+                </div>
+            </form>
+
+            <form id="forgotForm" class="auth-form">
+                <p style="margin-bottom: 20px; color: #666; font-size: 0.9rem;">
+                    Enter your email address and we'll send you a link to reset your password.
+                </p>
+
+                <div class="form-group">
+                    <label><i class="fas fa-envelope"></i> Email Address</label>
+                    <input type="email" class="form-input" id="forgotEmail" placeholder="Enter your registered email" required>
+                </div>
+
+                <button type="submit" class="btn btn-primary" id="forgotBtn">
+                    <i class="fas fa-paper-plane"></i> Send Reset Link
+                </button>
+
+                <div class="footer-text">
+                    Remember your password? <a href="#" onclick="switchTab('login')">Login</a>
+                </div>
+            </form>
         </div>
     </div>
 
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-app-compat.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/9.22.0/firebase-auth-compat.js"></script>
-    
-    <script>
-        // Firebase Configuration - Replace with your actual config
+    <script type="module">
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-app.js';
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, sendPasswordResetEmail, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/9.22.2/firebase-auth.js';
+
         const firebaseConfig = {
-  apiKey: "AIzaSyBtx-D3nbl1lKOhCzEixDZRgRDM4NbtOBE",
-  authDomain: "swiftauth-5fcb5.firebaseapp.com",
-  projectId: "swiftauth-5fcb5",
-  storageBucket: "swiftauth-5fcb5.firebasestorage.app",
-  messagingSenderId: "990160652137",
-  appId: "1:990160652137:web:abac238567edfdb5671ff8",
-  measurementId: "G-5C1DS28B5S"
-};
-
-        // Initialize Firebase
-        firebase.initializeApp(firebaseConfig);
-        const auth = firebase.auth();
-
-        const BACKEND_URL = 'https://airtimebackend.onrender.com';
-
-        // SVG Icons
-        const icons = {
-            success: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>`,
-            error: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="15" y1="9" x2="9" y2="15"/><line x1="9" y1="9" x2="15" y2="15"/></svg>`,
-            warning: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>`,
-            info: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>`,
-            check: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>`,
-            x: `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`
+            apiKey: "AIzaSyBtx-D3nbl1lKOhCzEixDZRgRDM4NbtOBE",
+            authDomain: "swiftauth-5fcb5.firebaseapp.com",
+            projectId: "swiftauth-5fcb5",
+            storageBucket: "swiftauth-5fcb5.firebasestorage.app",
+            messagingSenderId: "990160652137",
+            appId: "1:990160652137:web:abac238567edfdb5671ff8",
+            measurementId: "G-5C1DS28B5S"
         };
 
-        // Notification System
-        function showNotification(message, type = 'info') {
-            const container = document.getElementById('notificationContainer');
-            const notification = document.createElement('div');
-            notification.className = `notification notification-${type}`;
-            
-            notification.innerHTML = `
-                ${icons[type]}
-                <span>${message}</span>
-                <button onclick="this.parentElement.remove()">&times;</button>
-            `;
-            
-            container.appendChild(notification);
-            
-            setTimeout(() => {
-                if (notification.parentElement) {
-                    notification.remove();
-                }
-            }, 5000);
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+
+        const API_BASE = window.location.origin;
+
+        window.togglePassword = function(inputId, btn) {
+            const input = document.getElementById(inputId);
+            const icon = btn.querySelector('i');
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.classList.replace('fa-eye', 'fa-eye-slash');
+            } else {
+                input.type = 'password';
+                icon.classList.replace('fa-eye-slash', 'fa-eye');
+            }
+        };
+
+        window.switchTab = function(tab) {
+            document.querySelectorAll('.auth-tab').forEach(t => t.classList.remove('active'));
+            document.querySelectorAll('.auth-form').forEach(f => f.classList.remove('active'));
+            document.querySelector(`[data-tab="${tab}"]`).classList.add('active');
+            document.getElementById(`${tab}Form`).classList.add('active');
+            clearAlert();
+        };
+
+        document.querySelectorAll('.auth-tab').forEach(tab => {
+            tab.addEventListener('click', () => switchTab(tab.dataset.tab));
+        });
+
+        function showAlert(message, type = 'error') {
+            const alertBox = document.getElementById('alertBox');
+            const icon = type === 'error' ? 'fa-exclamation-circle' : type === 'success' ? 'fa-check-circle' : 'fa-info-circle';
+            alertBox.innerHTML = `<div class="alert alert-${type}"><i class="fas ${icon}"></i> ${message}</div>`;
         }
 
-        // Tab Switching
-        function switchTab(tab) {
-            document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-            document.querySelectorAll('.form-section').forEach(f => f.classList.remove('active'));
-            
-            document.querySelector(`.tab:nth-child(${tab === 'signin' ? 1 : tab === 'signup' ? 2 : 3})`).classList.add('active');
-            document.getElementById(`${tab}-form`).classList.add('active');
+        function clearAlert() {
+            document.getElementById('alertBox').innerHTML = '';
         }
 
-        // Button Loading State
-        function setLoading(buttonId, isLoading) {
-            const btn = document.getElementById(buttonId);
-            if (isLoading) {
-                btn.classList.add('loading');
+        function setLoading(btnId, loading) {
+            const btn = document.getElementById(btnId);
+            if (loading) {
                 btn.disabled = true;
+                btn.innerHTML = '<div class="spinner"></div> Please wait...';
             } else {
-                btn.classList.remove('loading');
                 btn.disabled = false;
+                const texts = {
+                    loginBtn: '<i class="fas fa-sign-in-alt"></i> Login',
+                    signupBtn: '<i class="fas fa-user-plus"></i> Create Account',
+                    forgotBtn: '<i class="fas fa-paper-plane"></i> Send Reset Link'
+                };
+                btn.innerHTML = texts[btnId];
             }
         }
 
-        // Validation Icon Update
-        function setValidationIcon(iconId, isValid) {
-            const icon = document.getElementById(iconId);
-            icon.innerHTML = isValid ? icons.check : icons.x;
-            icon.className = `validation-icon ${isValid ? 'valid' : 'invalid'}`;
-        }
-
-        // Phone Number Formatter
-        function formatPhoneNumber(phone) {
-            let cleaned = phone.replace(/\D/g, '');
-            if (cleaned.startsWith('0')) {
-                cleaned = '254' + cleaned.substring(1);
-            } else if (cleaned.startsWith('+254')) {
-                cleaned = cleaned.substring(1);
-            } else if (!cleaned.startsWith('254')) {
-                cleaned = '254' + cleaned;
-            }
-            return cleaned;
-        }
-
-        // Debounce function for API calls
-        let debounceTimers = {};
-        function debounce(key, func, delay) {
-            clearTimeout(debounceTimers[key]);
-            debounceTimers[key] = setTimeout(func, delay);
-        }
-
-        // Username Validation
-        async function validateUsername(input) {
-            const value = input.value.trim();
-            const feedback = document.getElementById('username-feedback');
-            
-            if (value.length < 3 || value.length > 20) {
-                input.classList.remove('valid');
-                input.classList.add('invalid');
-                setValidationIcon('username-icon', false);
-                feedback.textContent = 'Username must be 3-20 characters';
-                feedback.className = 'feedback invalid';
-                return false;
-            }
-
-            if (!/^[a-zA-Z0-9]+$/.test(value)) {
-                input.classList.remove('valid');
-                input.classList.add('invalid');
-                setValidationIcon('username-icon', false);
-                feedback.textContent = 'Only letters and numbers allowed';
-                feedback.className = 'feedback invalid';
-                return false;
-            }
-
-            // Check availability with debounce
-            debounce('username', async () => {
-                try {
-                    const response = await fetch(`${BACKEND_URL}/api/users/check-username/${value}`);
-                    const data = await response.json();
-                    
-                    if (data.exists) {
-                        input.classList.remove('valid');
-                        input.classList.add('invalid');
-                        setValidationIcon('username-icon', false);
-                        feedback.textContent = 'Username is already taken';
-                        feedback.className = 'feedback invalid';
-                    } else {
-                        input.classList.remove('invalid');
-                        input.classList.add('valid');
-                        setValidationIcon('username-icon', true);
-                        feedback.textContent = 'Username is available';
-                        feedback.className = 'feedback valid';
-                    }
-                } catch (error) {
-                    feedback.textContent = 'Checking availability...';
-                    feedback.className = 'feedback';
-                }
-            }, 500);
-
-            return true;
-        }
-
-        // Email Validation
-        async function validateEmail(input) {
-            const value = input.value.trim();
-            const feedback = document.getElementById('email-feedback');
-            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-            
-            if (!emailRegex.test(value)) {
-                input.classList.remove('valid');
-                input.classList.add('invalid');
-                setValidationIcon('email-icon', false);
-                feedback.textContent = 'Invalid email format';
-                feedback.className = 'feedback invalid';
-                return false;
-            }
-
-            // Check availability with debounce
-            debounce('email', async () => {
-                try {
-                    const response = await fetch(`${BACKEND_URL}/api/users/check-email/${value}`);
-                    const data = await response.json();
-                    
-                    if (data.exists) {
-                        input.classList.remove('valid');
-                        input.classList.add('invalid');
-                        setValidationIcon('email-icon', false);
-                        feedback.textContent = 'Email is already registered';
-                        feedback.className = 'feedback invalid';
-                    } else {
-                        input.classList.remove('invalid');
-                        input.classList.add('valid');
-                        setValidationIcon('email-icon', true);
-                        feedback.textContent = 'Email is available';
-                        feedback.className = 'feedback valid';
-                    }
-                } catch (error) {
-                    feedback.textContent = 'Valid email format';
-                    feedback.className = 'feedback valid';
-                }
-            }, 500);
-
-            return true;
-        }
-
-        // Phone Validation
-        function validatePhone(input) {
-            const value = input.value.trim();
-            const feedback = document.getElementById('phone-feedback');
-            const cleaned = value.replace(/\D/g, '');
-            
-            const isValid = /^(254|0)(7|1)\d{8}$/.test(cleaned) || /^(\+254)(7|1)\d{8}$/.test(value);
-            
-            if (isValid) {
-                input.classList.remove('invalid');
-                input.classList.add('valid');
-                setValidationIcon('phone-icon', true);
-                feedback.textContent = 'Valid Kenyan phone number';
-                feedback.className = 'feedback valid';
-            } else {
-                input.classList.remove('valid');
-                input.classList.add('invalid');
-                setValidationIcon('phone-icon', false);
-                feedback.textContent = 'Enter valid Kenyan number (07/01/+254)';
-                feedback.className = 'feedback invalid';
-            }
-            
-            return isValid;
-        }
-
-        // Password Validation
-        function validatePassword(input) {
-            const value = input.value;
-            const feedback = document.getElementById('password-feedback');
-            const strengthText = document.getElementById('strength-text');
-            
-            let strength = 0;
-            if (value.length >= 8) strength++;
-            if (/[A-Z]/.test(value)) strength++;
-            if (/[a-z]/.test(value)) strength++;
-            if (/[0-9]/.test(value)) strength++;
-            if (/[!@#$%^&*(),.?":{}|<>]/.test(value)) strength++;
-
-            // Update strength bars
-            const bars = ['str1', 'str2', 'str3', 'str4'];
-            bars.forEach((bar, index) => {
-                const el = document.getElementById(bar);
-                el.className = 'strength-bar';
-                if (strength > index) {
-                    if (strength <= 2) el.classList.add('weak');
-                    else if (strength <= 3) el.classList.add('medium');
-                    else el.classList.add('strong');
-                }
-            });
-
-            // Update strength text
-            if (strength <= 2) {
-                strengthText.textContent = 'Weak password';
-                strengthText.style.color = 'var(--error)';
-            } else if (strength <= 3) {
-                strengthText.textContent = 'Medium password';
-                strengthText.style.color = 'var(--warning)';
-            } else {
-                strengthText.textContent = 'Strong password';
-                strengthText.style.color = 'var(--success)';
-            }
-
-            const isValid = value.length >= 8 && 
-                           /[A-Z]/.test(value) && 
-                           /[a-z]/.test(value) && 
-                           /[0-9]/.test(value) && 
-                           /[!@#$%^&*(),.?":{}|<>]/.test(value);
-
-            if (isValid) {
-                input.classList.remove('invalid');
-                input.classList.add('valid');
-                setValidationIcon('password-icon', true);
-                feedback.textContent = '';
-            } else {
-                input.classList.remove('valid');
-                input.classList.add('invalid');
-                setValidationIcon('password-icon', false);
-                feedback.textContent = 'Must contain: 8+ chars, uppercase, lowercase, number, special char';
-                feedback.className = 'feedback invalid';
-            }
-
-            // Also validate confirm password if filled
-            const confirmInput = document.getElementById('signup-confirm');
-            if (confirmInput.value) {
-                validateConfirmPassword(confirmInput);
-            }
-
-            return isValid;
-        }
-
-        // Confirm Password Validation
-        function validateConfirmPassword(input) {
-            const password = document.getElementById('signup-password').value;
-            const value = input.value;
-            const feedback = document.getElementById('confirm-feedback');
-            
-            const isValid = value === password && value.length > 0;
-            
-            if (isValid) {
-                input.classList.remove('invalid');
-                input.classList.add('valid');
-                setValidationIcon('confirm-icon', true);
-                feedback.textContent = 'Passwords match';
-                feedback.className = 'feedback valid';
-            } else {
-                input.classList.remove('valid');
-                input.classList.add('invalid');
-                setValidationIcon('confirm-icon', false);
-                feedback.textContent = 'Passwords do not match';
-                feedback.className = 'feedback invalid';
-            }
-            
-            return isValid;
-        }
-
-        // Sign In Handler
-        async function handleSignIn(event) {
-            event.preventDefault();
-            setLoading('signin-btn', true);
-            
-            const email = document.getElementById('signin-email').value.trim();
-            const password = document.getElementById('signin-password').value;
-            
+        async function checkUsernameExists(username) {
             try {
-                // Check if email has associated username first
-                const checkResponse = await fetch(`${BACKEND_URL}/api/users/check-email/${email}`);
-                const checkData = await checkResponse.json();
-                
-                if (!checkData.exists) {
-                    showNotification('No account found with this email. Please sign up first.', 'error');
-                    setLoading('signin-btn', false);
-                    return;
-                }
-
-                // Firebase sign in
-                const userCredential = await auth.signInWithEmailAndPassword(email, password);
-                const user = userCredential.user;
-                const token = await user.getIdToken();
-                
-                // Get user data from backend
-                const userResponse = await fetch(`${BACKEND_URL}/api/users/firebase/${user.uid}`);
-                const userData = await userResponse.json();
-                
-                if (!userData.success) {
-                    showNotification('Account data not found. Please contact support.', 'error');
-                    setLoading('signin-btn', false);
-                    return;
-                }
-
-                // Store session data
-                localStorage.setItem('user_token', token);
-                localStorage.setItem('user_data', JSON.stringify(userData.user));
-                localStorage.setItem('login_timestamp', Date.now().toString());
-                localStorage.setItem('username', userData.user.username);
-                
-                showNotification('Login successful! Redirecting...', 'success');
-                
-                setTimeout(() => {
-                    window.location.href = 'index.html';
-                }, 1500);
-                
+                const response = await fetch(`${API_BASE}/api/users/username/${username}`);
+                const data = await response.json();
+                return data.success;
             } catch (error) {
-                console.error('Sign in error:', error);
+                return false;
+            }
+        }
+
+        async function checkEmailHasUsername(email) {
+            try {
+                const response = await fetch(`${API_BASE}/api/users/email/${email}`);
+                const data = await response.json();
+                return data;
+            } catch (error) {
+                return { success: false };
+            }
+        }
+
+        document.getElementById('loginForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            clearAlert();
+            setLoading('loginBtn', true);
+
+            const email = document.getElementById('loginEmail').value.trim();
+            const password = document.getElementById('loginPassword').value;
+
+            try {
+                const userCheck = await checkEmailHasUsername(email);
+                if (!userCheck.success) {
+                    showAlert('No account found with this email. Please sign up first.', 'error');
+                    setLoading('loginBtn', false);
+                    return;
+                }
+
+                const userCredential = await signInWithEmailAndPassword(auth, email, password);
+                const user = userCredential.user;
+
+                localStorage.setItem('userEmail', email);
+                localStorage.setItem('username', userCheck.user.username);
+                localStorage.setItem('firebaseUid', user.uid);
+
+                showAlert('Login successful! Redirecting...', 'success');
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 1000);
+            } catch (error) {
+                console.error('Login error:', error);
                 let message = 'Login failed. Please try again.';
-                
-                if (error.code === 'auth/wrong-password') {
-                    message = 'Incorrect password. Please try again.';
-                } else if (error.code === 'auth/user-not-found') {
+                if (error.code === 'auth/user-not-found') {
                     message = 'No account found with this email.';
+                } else if (error.code === 'auth/wrong-password') {
+                    message = 'Incorrect password.';
                 } else if (error.code === 'auth/invalid-email') {
                     message = 'Invalid email address.';
                 } else if (error.code === 'auth/too-many-requests') {
-                    message = 'Too many failed attempts. Please try again later.';
+                    message = 'Too many attempts. Please try again later.';
                 }
-                
-                showNotification(message, 'error');
-                setLoading('signin-btn', false);
+                showAlert(message, 'error');
             }
-        }
+            setLoading('loginBtn', false);
+        });
 
-        // Sign Up Handler
-        async function handleSignUp(event) {
-            event.preventDefault();
-            
-            const username = document.getElementById('signup-username').value.trim();
-            const email = document.getElementById('signup-email').value.trim();
-            const phone = document.getElementById('signup-phone').value.trim();
-            const password = document.getElementById('signup-password').value;
-            const confirmPassword = document.getElementById('signup-confirm').value;
-            const termsAccepted = document.getElementById('terms').checked;
+        document.getElementById('signupForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            clearAlert();
+            setLoading('signupBtn', true);
 
-            // Validate all fields
-            if (!username || !email || !phone || !password || !confirmPassword) {
-                showNotification('Please fill in all fields', 'error');
-                return;
-            }
-
-            if (!termsAccepted) {
-                showNotification('Please accept the Terms & Conditions', 'error');
-                return;
-            }
+            const username = document.getElementById('signupUsername').value.trim();
+            const email = document.getElementById('signupEmail').value.trim();
+            const phone = '254' + document.getElementById('signupPhone').value.trim();
+            const password = document.getElementById('signupPassword').value;
+            const confirmPassword = document.getElementById('signupConfirmPassword').value;
 
             if (password !== confirmPassword) {
-                showNotification('Passwords do not match', 'error');
+                showAlert('Passwords do not match.', 'error');
+                setLoading('signupBtn', false);
                 return;
             }
 
-            // Check password strength
-            const passwordValid = password.length >= 8 && 
-                                 /[A-Z]/.test(password) && 
-                                 /[a-z]/.test(password) && 
-                                 /[0-9]/.test(password) && 
-                                 /[!@#$%^&*(),.?":{}|<>]/.test(password);
-            
-            if (!passwordValid) {
-                showNotification('Password does not meet requirements', 'error');
+            if (username.length < 3) {
+                showAlert('Username must be at least 3 characters.', 'error');
+                setLoading('signupBtn', false);
                 return;
             }
 
-            setLoading('signup-btn', true);
+            if (!/^[a-zA-Z0-9_]+$/.test(username)) {
+                showAlert('Username can only contain letters, numbers, and underscores.', 'error');
+                setLoading('signupBtn', false);
+                return;
+            }
 
             try {
-                // Create Firebase user
-                const userCredential = await auth.createUserWithEmailAndPassword(email, password);
+                const usernameExists = await checkUsernameExists(username);
+                if (usernameExists) {
+                    showAlert('Username is already taken. Please choose another.', 'error');
+                    setLoading('signupBtn', false);
+                    return;
+                }
+
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
                 const user = userCredential.user;
-                
-                // Format phone number
-                const formattedPhone = formatPhoneNumber(phone);
-                
-                // Register user in backend database
-                const registerResponse = await fetch(`${BACKEND_URL}/api/users/register`, {
+
+                const response = await fetch(`${API_BASE}/api/users/register`, {
                     method: 'POST',
-                    headers: {
-                        'Content-Type': 'application/json'
-                    },
+                    headers: { 'Content-Type': 'application/json' },
                     body: JSON.stringify({
-                        firebase_uid: user.uid,
-                        username: username,
-                        email: email,
-                        phone: formattedPhone
+                        username,
+                        email,
+                        phone_number: phone,
+                        firebase_uid: user.uid
                     })
                 });
 
-                const registerData = await registerResponse.json();
+                const data = await response.json();
 
-                if (!registerData.success) {
-                    // If backend registration fails, delete Firebase user
-                    await user.delete();
-                    showNotification(registerData.message || 'Registration failed', 'error');
-                    setLoading('signup-btn', false);
+                if (!data.success) {
+                    showAlert(data.message || 'Registration failed.', 'error');
+                    setLoading('signupBtn', false);
                     return;
                 }
 
-                // Get token and store session
-                const token = await user.getIdToken();
-                
-                localStorage.setItem('user_token', token);
-                localStorage.setItem('user_data', JSON.stringify(registerData.user));
-                localStorage.setItem('login_timestamp', Date.now().toString());
+                localStorage.setItem('userEmail', email);
                 localStorage.setItem('username', username);
-                
-                showNotification('Account created successfully! Redirecting...', 'success');
-                
+                localStorage.setItem('firebaseUid', user.uid);
+
+                showAlert('Account created successfully! Redirecting...', 'success');
                 setTimeout(() => {
-                    window.location.href = 'index.html';
+                    window.location.href = '/';
                 }, 1500);
-                
             } catch (error) {
-                console.error('Sign up error:', error);
+                console.error('Signup error:', error);
                 let message = 'Registration failed. Please try again.';
-                
                 if (error.code === 'auth/email-already-in-use') {
-                    message = 'This email is already registered.';
-                } else if (error.code === 'auth/weak-password') {
-                    message = 'Password is too weak.';
+                    message = 'Email is already registered.';
                 } else if (error.code === 'auth/invalid-email') {
                     message = 'Invalid email address.';
+                } else if (error.code === 'auth/weak-password') {
+                    message = 'Password is too weak. Use at least 6 characters.';
                 }
-                
-                showNotification(message, 'error');
-                setLoading('signup-btn', false);
+                showAlert(message, 'error');
             }
-        }
+            setLoading('signupBtn', false);
+        });
 
-        // Forgot Password Handler
-        async function handleForgotPassword(event) {
-            event.preventDefault();
-            
-            const email = document.getElementById('forgot-email').value.trim();
-            const feedback = document.getElementById('forgot-feedback');
-            
-            if (!email) {
-                showNotification('Please enter your email address', 'error');
-                return;
-            }
+        document.getElementById('forgotForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+            clearAlert();
+            setLoading('forgotBtn', true);
 
-            setLoading('forgot-btn', true);
+            const email = document.getElementById('forgotEmail').value.trim();
 
             try {
-                // Check if email exists in backend
-                const checkResponse = await fetch(`${BACKEND_URL}/api/users/check-email/${email}`);
-                const checkData = await checkResponse.json();
-                
-                if (!checkData.exists) {
-                    showNotification('No account found with this email address', 'error');
-                    setLoading('forgot-btn', false);
+                const userCheck = await checkEmailHasUsername(email);
+                if (!userCheck.success) {
+                    showAlert('No account found with this email address.', 'error');
+                    setLoading('forgotBtn', false);
                     return;
                 }
 
-                // Send password reset email via Firebase
-                await auth.sendPasswordResetEmail(email);
-                
-                showNotification('Password reset link sent to your email!', 'success');
-                feedback.textContent = 'Check your email inbox for the reset link';
-                feedback.className = 'feedback valid';
-                
-                // Clear the form
-                document.getElementById('forgot-email').value = '';
-                
+                await sendPasswordResetEmail(auth, email);
+                showAlert('Password reset link sent! Check your email inbox.', 'success');
             } catch (error) {
-                console.error('Forgot password error:', error);
-                let message = 'Failed to send reset email. Please try again.';
-                
+                console.error('Password reset error:', error);
+                let message = 'Failed to send reset link. Please try again.';
                 if (error.code === 'auth/user-not-found') {
                     message = 'No account found with this email.';
-                } else if (error.code === 'auth/invalid-email') {
-                    message = 'Invalid email address.';
                 }
-                
-                showNotification(message, 'error');
+                showAlert(message, 'error');
             }
-            
-            setLoading('forgot-btn', false);
-        }
+            setLoading('forgotBtn', false);
+        });
 
-        // Check if already logged in
-        document.addEventListener('DOMContentLoaded', () => {
-            const token = localStorage.getItem('user_token');
-            const loginTimestamp = localStorage.getItem('login_timestamp');
-            
-            if (token && loginTimestamp) {
-                const hoursDiff = (Date.now() - parseInt(loginTimestamp)) / (1000 * 60 * 60);
-                if (hoursDiff < 24) {
-                    window.location.href = 'index.html';
-                } else {
-                    localStorage.clear();
-                }
+        onAuthStateChanged(auth, (user) => {
+            if (user && localStorage.getItem('username')) {
+                window.location.href = '/';
             }
         });
     </script>
 </body>
-  </html>
+</html>
